@@ -32,34 +32,14 @@ export const ThemeToggle = () => {
     <button
       onClick={toggleTheme}
       className={cn(
-        // Position fixed top-right on all screens
-        "fixed top-4 right-4 z-50",
-        // Padding adjusts per screen
-        "p-2 sm:p-3 md:p-4",
-        // Rounded and transition
-        "rounded-full transition-colors duration-300 focus:outline-none",
-        // Background colors
-        "bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+        "fixed max-sm:hidden top-5 right-5 z-50 p-2 rounded-full transition-colors duration-300",
+        "focus:outlin-hidden"
       )}
     >
       {isDarkMode ? (
-        <Sun
-          className={cn(
-            // Responsive sizing
-            "h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8",
-            // Color
-            "text-yellow-300"
-          )}
-        />
+        <Sun className="h-6 w-6 text-yellow-300" />
       ) : (
-        <Moon
-          className={cn(
-            // Responsive sizing
-            "h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8",
-            // Color
-            "text-blue-900 dark:text-blue-200"
-          )}
-        />
+        <Moon className="h-6 w-6 text-blue-900" />
       )}
     </button>
   );
