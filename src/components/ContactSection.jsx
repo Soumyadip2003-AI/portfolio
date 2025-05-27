@@ -21,9 +21,9 @@ export const ContactSection = () => {
     message: "",
   })
 
-  const serverID = "SERVICE_KEY";
-  const templateID = "TEMPLATE_KEY";
-  const publicKey = "PUBLIC_KEY";
+  const serverID = "service_bt35t5f";
+  const templateID = "template_plyv23s";
+  const publicKey = "EuSlp1yf0tnWYyef4";
 
   const handleesubmit = (e) => {
     e.preventDefault()
