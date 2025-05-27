@@ -7,6 +7,7 @@ export const ThemeToggle = () => {
   const [position, setPosition] = useState({ x: 20, y: 20 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
@@ -72,7 +73,10 @@ export const ThemeToggle = () => {
     const newX = Math.max(0, Math.min(maxX, clientX - dragOffset.x));
     const newY = Math.max(0, Math.min(maxY, clientY - dragOffset.y));
 
-    setPosition({ x: newX, y: newY });
+    // Use requestAnimationFrame for smooth transitions
+    requestAnimationFrame(() => {
+      setPosition({ x: newX, y: newY });
+    });
   };
 
   const handleMouseMove = (e) => {
@@ -88,8 +92,40 @@ export const ThemeToggle = () => {
   const handleEnd = () => {
     if (isDragging) {
       setIsDragging(false);
+      setIsAnimating(true);
+      
+      // Snap to edges if close enough
+      const snapThreshold = 50;
+      const buttonSize = 48;
+      let finalX = position.x;
+      let finalY = position.y;
+      
+      // Snap to left or right edge
+      if (position.x < snapThreshold) {
+        finalX = 10;
+      } else if (position.x > window.innerWidth - buttonSize - snapThreshold) {
+        finalX = window.innerWidth - buttonSize - 10;
+      }
+      
+      // Snap to top or bottom edge
+      if (position.y < snapThreshold) {
+        finalY = 10;
+      } else if (position.y > window.innerHeight - buttonSize - snapThreshold) {
+        finalY = window.innerHeight - buttonSize - 10;
+      }
+      
+      // Smooth transition to final position
+      if (finalX !== position.x || finalY !== position.y) {
+        setTimeout(() => {
+          setPosition({ x: finalX, y: finalY });
+        }, 50);
+      }
+      
       // Save position to localStorage
-      localStorage.setItem("themeTogglePosition", JSON.stringify(position));
+      setTimeout(() => {
+        localStorage.setItem("themeTogglePosition", JSON.stringify({ x: finalX, y: finalY }));
+        setIsAnimating(false);
+      }, 350);
     }
   };
 
@@ -125,25 +161,30 @@ export const ThemeToggle = () => {
         left: `${position.x}px`,
         top: `${position.y}px`,
         transform: isDragging ? 'scale(1.1)' : 'scale(1)',
+        transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        willChange: 'transform, left, top',
       }}
       className={cn(
-        "fixed z-50 p-3 rounded-full transition-all duration-200 cursor-move",
+        "fixed z-50 p-3 rounded-full cursor-move",
         "bg-background/90 backdrop-blur-sm border-2 border-border/50 shadow-lg",
         "hover:bg-foreground/10 hover:scale-105 hover:shadow-xl active:scale-95",
         "focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2",
         "select-none touch-none",
-        isDragging && "shadow-2xl ring-2 ring-primary/30"
+        "transition-all duration-300 ease-out",
+        isDragging 
+          ? "shadow-2xl ring-2 ring-primary/30 backdrop-blur-md" 
+          : "hover:shadow-xl hover:backdrop-blur-md"
       )}
       aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
     >
       {isDarkMode ? (
-        <Sun className="h-6 w-6 text-yellow-400 transition-transform duration-300 pointer-events-none" />
+        <Sun className="h-6 w-6 text-yellow-400 transition-all duration-500 ease-out pointer-events-none hover:rotate-180" />
       ) : (
-        <Moon className="h-6 w-6 text-blue-600 transition-transform duration-300 pointer-events-none" />
+        <Moon className="h-6 w-6 text-blue-600 transition-all duration-500 ease-out pointer-events-none hover:-rotate-12" />
       )}
       
       {/* Visual indicator for draggable */}
-      <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary/60 rounded-full animate-pulse" />
+      <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary/60 rounded-full transition-all duration-300 animate-pulse hover:scale-110" />
     </button>
   );
 };
