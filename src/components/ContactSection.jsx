@@ -11,8 +11,34 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import emailjs from "emailjs-com";
 
 export const ContactSection = () => {
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+
+  const serverID = "service_bt35t5f";
+  const templateID = "template_plyv23s";
+  const publicKey = "EuSlp1yf0tnWYyef4";
+
+  const handleesubmit = (e) => {
+    e.preventDefault()
+    emailjs.sendForm(serverID, templateID, e.target, publicKey).then((result)=>{
+      alert("Message sent successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    }).catch(()=>alert("An error occurred, please try again later!"));
+
+  };
+
+
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -111,7 +137,7 @@ export const ContactSection = () => {
           >
             <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleesubmit}>
               <div>
                 <label
                   htmlFor="name"
@@ -125,6 +151,8 @@ export const ContactSection = () => {
                   id="name"
                   name="name"
                   required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
                   placeholder="Soumyadip Sarkar"
                 />
@@ -143,6 +171,8 @@ export const ContactSection = () => {
                   id="email"
                   name="email"
                   required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
                   placeholder="john@gmail"
                 />
@@ -160,6 +190,8 @@ export const ContactSection = () => {
                   id="message"
                   name="message"
                   required
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
                   placeholder="Hello, I'd like to talk about..."
                 />
