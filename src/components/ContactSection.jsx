@@ -20,10 +20,10 @@ export const ContactSection = () => {
     email: "",
     message: "",
   })
-  console.log({ serviceID, templateID, publicKey });
-  const serverID = REACT_APP_EMAILJS_SERVICE_ID;
-  const templateID = REACT_APP_EMAILJS_TEMPLATE_ID ;
-  const publicKey =REACT_APP_EMAILJS_PUBLIC_KEY ;
+
+  const serverID = "SERVICE_KEY";
+  const templateID = "TEMPLATE_KEY";
+  const publicKey = "PUBLIC_KEY";
 
   const handleesubmit = (e) => {
     e.preventDefault()
