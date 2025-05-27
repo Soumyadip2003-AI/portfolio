@@ -21,9 +21,9 @@ export const ContactSection = () => {
     message: "",
   })
 
-  const serverID = "service_bt35t5f";
-  const templateID = "template_plyv23s";
-  const publicKey = "EuSlp1yf0tnWYyef4";
+  const serverID = import.meta.env.VITE_SERVICE_ID;
+const templateID = import.meta.env.VITE_TEMPLATE_ID;
+const publicKey = import.meta.env.VITE_PUBLIC_KEY;
 
   const handleesubmit = (e) => {
     e.preventDefault()
