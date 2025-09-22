@@ -17,7 +17,7 @@ const projects = [
       "Developed a comprehensive mental health crisis detection system using advanced NLP techniques and machine learning algorithms. The system analyzes user inputs to identify potential mental health crises, providing timely alerts and resources.",
     image: "/projects/projects2.png",
     tags: ["Python", "Pandas", "NumPy", "Streamlit", "scikit-learn", "Joblib", "Shap", "Matplotlib", "Seaborn", "nltk","transformers","spacy","gensim","opencv"],
-    demoUrl: "https://cmrbyzcsb74mtrlbcsfplb.streamlit.app/",
+    demoUrl: "https://soumyadip2003-ai-mental-health-ultimate-advanced-ai-8clazi.streamlit.app/",
     githubUrl: "#",
   },
 ];
