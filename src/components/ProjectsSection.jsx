@@ -6,8 +6,9 @@ const projects = [
     title: "stroke-prediction-system",
     description: "Designed and implemented a predictive system leveraging AI and machine learning to assess stroke risk.Utilized data preprocessing and model optimization to ensure accurate predictions .",
     image: "/projects/projects1.png",
-    tags: ["Python", "Pandas", "Scikit-learn", "Streamlit","Joblib","Shap"],
-    demoUrl: "https://stroke-prediction-system-ai-ml-j8mcfnxdyge3kpqkklb6ud.streamlit.app/",
+    tags: ["XGBoost",
+"LightGBM","Random Forest", "Gradient Boosting","Extra Trees", "AdaBoost", "Balanced Random Forest", "SVM", "MLP Classifier"],
+    demoUrl: "https://stroke-prediction-system-ai-ml-xshe.vercel.app/",
     githubUrl: "https://github.com/Soumyadip2003-AI/stroke-prediction-system-ai-ml.git",
   },
   {
