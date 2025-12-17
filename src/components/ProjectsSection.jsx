@@ -12,12 +12,12 @@ const projects = [
   },
   {
     id: 2,
-    title: "Mental Health Crisis Detector",
+    title: "Nova - AI-Powered Code Generation Platform",
     description:
-      "Developed a comprehensive mental health crisis detection system using advanced NLP techniques and machine learning algorithms. The system analyzes user inputs to identify potential mental health crises, providing timely alerts and resources.",
+      "Nova is an autonomous AI coding platform that lets users build full-stack web applications through simple conversations. Powered by GPT-5.1 agents and secure E2B sandboxes, it generates production-quality Next.js code, installs dependencies, and provides instant live previews — all from a single prompt. Features include version history, credit-based usage, and Clerk-powered authentication.",
     image: "/projects/projects2.png",
-    tags: ["Python", "Pandas", "NumPy", "Streamlit", "scikit-learn", "Joblib", "Shap", "Matplotlib", "Seaborn", "nltk","transformers","spacy","gensim","opencv"],
-    demoUrl: "https://soumyadip2003-ai-mental-health-ultimate-advanced-ai-8clazi.streamlit.app/",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "tRPC", "Prisma", "PostgreSQL", "Zod", "OpenAI", "Inngest", "E2B", "Clerk", "Vercel", "shadcn/ui", "Radix UI", "TanStack Query", "React Hook Form", "Sonner"],
+    demoUrl: "https://nova-five-black.vercel.app/",
     githubUrl: "#",
   },
 ];
